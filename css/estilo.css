@@ -1,41 +1,80 @@
 /* PALETA DE COLORES */
 :root {
     --bg-color: #181419;
-    --primary-color: #07f9a2;
+    --primary-color: #1dfbd2;
     --secundary-color: #09c184;
     --third-color: #0a8967;
-    --fourth-color: #0c5149;
+    --fourth-color: #225e57;
+    --fifth-color: #f0e4e4;
 }
 
-.logoKmc{
-    padding-left: 15%;
+/* GENERAL */
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: justify;
+    font-size: 100%;
 }
 
 body{
-    background-color: #f0e4e4;
+    background-color: var(--fifth-color);
 }
 
+/* BARRA NAVEGACION */
 nav {
-font-family: Arial, Helvetica, sans-serif;
-    background-color: #444;
+    background-color: var(--primary-color);
     padding: 10px 0;
     text-align: center;
 }
 
 nav a {
-    color: #fff;
+    color: var(--bg-color);
     text-decoration: none;
     padding: 0 10px;
+    font-size: 200%;
 }
 
 nav a:hover{
- font-style: inherit;
- font: unset;
+    font-style: inherit;
+    font: unset;
+    font-size: 300%;
 }
 
-.contedor{
+.contenedor{
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+/* PARRAFOS */
+.titulo {
+    font-size: 200%;
+    text-align: center;
+    text-decoration: underline double;
+}
+
+.titulo-2 {
+    text-align: center;
+    border: var(--bg-color) solid 5px;
+    margin-right: 20px;
+
+}
+
+.caja {
+    border: var(--fourth-color) solid 10px;
+    border-radius: 10px;
+    margin-right: 20px;
+}
+
+/* SUBTITULOS */
+.subtitulo-1 {
+    text-align: center;
+    font-size: 300%;
+    background-color: var(--primary-color);
+}
+
+.subtitulo-2 {
+    text-align: left;
+    padding: 10px;
+    border: 5px solid var(--bg-color);
+    border-radius: 10px;
+}
