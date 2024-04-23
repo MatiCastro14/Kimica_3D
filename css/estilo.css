@@ -1,33 +1,35 @@
 /* PALETA DE COLORES */
 :root {
-    --bg-color: #181419;
-    --primary-color: #1dfbd2;
-    --secundary-color: #09c184;
-    --third-color: #0a8967;
-    --fourth-color: #225e57;
-    --fifth-color: #f0e4e4;
+    --color-uno: #181419;
+    --color-dos: #04fce4;
+    --color-tres: #5cfcec;
+    --color-cuatro: #029687;
+    --color-quinto: #045494;
+    --color-sexto: #f0e4e4;
 }
 
 /* GENERAL */
 * {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    text-align: justify;
     font-size: 100%;
 }
 
 body{
-    background-color: var(--fifth-color);
+    background-color: var(--color-sexto);
 }
 
 /* BARRA NAVEGACION */
 nav {
-    background-color: var(--primary-color);
+    background-color: var(--color-quinto);
     padding: 10px 0;
     text-align: center;
+    font-weight: bold;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
 
 nav a {
-    color: var(--bg-color);
+    color: var(--color-sexto);
     text-decoration: none;
     padding: 0 10px;
     font-size: 200%;
@@ -49,18 +51,31 @@ nav a:hover{
 .titulo {
     font-size: 200%;
     text-align: center;
-    text-decoration: underline double;
+    text-decoration: underline double; 
+    font-weight: bold;
 }
 
 .titulo-2 {
-    text-align: center;
-    border: var(--bg-color) solid 5px;
-    margin-right: 20px;
+    text-align: left;
+    margin: 20px 10px;
+    color: var(--color-sexto);
+    background-color: var(--color-quinto);
+    padding: 20px;
+    font-size: 25px;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
 
+.texto-párrafo {
+    padding: 10px 20px;
+    line-height: 1.5;
+    font-weight: bold; /*negrita*/
+    font-style: italic; /*cursiva*/
+    font-size: 150%;
 }
 
 .caja {
-    border: var(--fourth-color) solid 10px;
+    border: var(--color-cuatro) solid 10px;
     border-radius: 10px;
     margin-right: 20px;
 }
@@ -68,13 +83,21 @@ nav a:hover{
 /* SUBTITULOS */
 .subtitulo-1 {
     text-align: center;
-    font-size: 300%;
+    font-size: 300%; 
     background-color: var(--primary-color);
+    border-style: double; /*subrayado doble*/
 }
 
 .subtitulo-2 {
-    text-align: left;
+    background-color: var(--color-dos);
     padding: 10px;
-    border: 5px solid var(--bg-color);
+    font-size: 25px;
+    border: 5px solid var(--color-uno);
     border-radius: 10px;
+    text-align: center;
 }
+
+.imagen-1{
+    display: inline-flex; 
+}
+
