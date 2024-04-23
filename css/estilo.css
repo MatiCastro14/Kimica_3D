@@ -1,11 +1,12 @@
 /* PALETA DE COLORES */
 :root {
-    --bg-color: #181419;
-    --primary-color: #1dfbd2;
-    --secundary-color: #09c184;
-    --third-color: #0a8967;
-    --fourth-color: #225e57;
-    --fifth-color: #f0e4e4;
+    --color-uno: #181419;
+    --color-dos: #f0e4e4;
+    --color-tres: #1dfbd2;
+    --color-cuatro: #09c184;
+    --color-cinco: #0a8967;
+    --color-sexto: #225e57;
+    
 }
 
 /* GENERAL */
@@ -16,18 +17,20 @@
 }
 
 body{
-    background-color: var(--fifth-color);
+    background-color: var(--color-dos);
 }
 
 /* BARRA NAVEGACION */
 nav {
-    background-color: var(--primary-color);
+    background-color: var(--color-sexto);
     padding: 10px 0;
     text-align: center;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
 
 nav a {
-    color: var(--bg-color);
+    color: var(--color-dos);
     text-decoration: none;
     padding: 0 10px;
     font-size: 200%;
@@ -54,7 +57,7 @@ nav a:hover{
 
 .titulo-2 {
     text-align: center;
-    border: var(--bg-color) solid 5px;
+    border: var(--color-dos) solid 5px;
     margin-right: 20px;
 
 }
@@ -77,4 +80,15 @@ nav a:hover{
     padding: 10px;
     border: 5px solid var(--bg-color);
     border-radius: 10px;
+}
+
+.imagen-1 {
+    display: flex;
+    margin: 10px 15px;
+}
+
+#imagen-2 {
+    margin-bottom: 20px;
+    border: var(--primary-color) solid 10px;
+    border-image: 20px;
 }
