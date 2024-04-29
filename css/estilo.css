@@ -84,7 +84,7 @@ nav a:hover{
 .subtitulo-1 {
     text-align: center;
     font-size: 300%; 
-    background-color: var(--primary-color);
+    background-color: var(--color-dos);
     border-style: double; /*subrayado doble*/
 }
 
@@ -95,9 +95,32 @@ nav a:hover{
     border: 5px solid var(--color-uno);
     border-radius: 10px;
     text-align: center;
+    transition: transform 1s;
+}
+
+.subtitulo-2:hover {
+    transform: scale(1.1);
 }
 
 .imagen-1{
-    display: inline-flex; 
+    display: inline-flex;
+    text-align: center;
 }
 
+.imagen-1 img {
+    display: flex;
+    border: 10px solid var(--color-uno);
+    margin: 10px;
+    border-radius: 10px;
+}
+
+.imagen-1:hover h3 img{
+    transform: scale(1.2);
+}
+
+#imagen-2{
+    padding: 20px;
+    margin: 10px;
+    border: 20px solid var(--color-quinto);
+    text-align: center;
+}
