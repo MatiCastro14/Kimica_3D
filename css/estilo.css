@@ -12,10 +12,12 @@
 * {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 100%;
+    box-sizing: border-box;
 }
 
 body{
     background-color: var(--color-sexto);
+    margin: 0; /* Elimina el margen en el cuerpo */
 }
 
 /* BARRA NAVEGACION */
@@ -38,7 +40,7 @@ nav a {
 nav a:hover{
     font-style: inherit;
     font: unset;
-    font-size: 300%;
+    font-size: 150%;
 }
 
 .contenedor{
@@ -66,13 +68,21 @@ nav a:hover{
     border-bottom-right-radius: 20px;
 }
 
+p {
+    font-size: 100%; /* Tamaño de fuente */
+    line-height: 1.5; /* Espaciado entre líneas */
+    margin-bottom: 20px; /* Margen inferior */
+    color: #333; /* Color del texto */
+	padding: 10px 20px;
+}
+/*
 .texto-párrafo {
     padding: 10px 20px;
     line-height: 1.5;
-    font-weight: bold; /*negrita*/
-    font-style: italic; /*cursiva*/
+    /*font-weight: bold; negrita
+    font-style: italic; cursiva
     font-size: 150%;
-}
+}*/
 
 .caja {
     border: var(--color-cuatro) solid 10px;
@@ -102,22 +112,52 @@ nav a:hover{
     transform: scale(1.1);
 }
 
+.subtitulo-3 {
+	font-weight: bold;
+	font-size: 1.2em;
+	text-decoration: underline;
+}
+
 .imagen-1{
     display: inline-flex;
     text-align: center;
 }
 
-/* Formulario*/
-* {
-	box-sizing: border-box;
-}
-main {
-	max-width: 800px;
-	width: 90%;
-	margin: auto;
-	padding: 40px;
+.imagen_contenedor{
+	display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+	margin-top: 20px;
 }
 
+.imagen-item {
+    width: calc(25% - 20px); /* contenedor menos margen */
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.imagen-item img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.imagen-item p {
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+/* Imagenes url*/
+
+#imagen_proyecto_color:hover , #imagen_defra:hover, #imagen_tp3d:hover{
+    transform: scale(1.1); /* Cambiar el tamaño al hacer hover */
+	border: 2px solid #000;
+}
+
+main {
+	width: 90%;
+	margin: auto;
+	padding: 20px;
+}
 .formulario {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
