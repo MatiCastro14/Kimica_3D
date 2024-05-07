@@ -305,3 +305,17 @@ main {
 		width: 100%;
 	}
 }
+footer{
+	background-color: var(--color-quinto);
+	padding: 20px 10px;
+	text-align: center;
+	font-size: 150%;
+	font-weight: bold;
+	border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+footer a{
+	color: var(--color-sexto);
+	margin: 20px 20px;
+	text-decoration: none;
+}
