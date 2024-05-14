@@ -4,7 +4,7 @@
     --color-dos: #04fce4;
     --color-tres: #5cfcec;
     --color-cuatro: #029687;
-    --color-quinto: #045494;
+    --color-quinto: #67a8ddd2;
     --color-sexto: #f0e4e4;
 }
 
@@ -23,8 +23,8 @@ body{
 /* BARRA NAVEGACION */
 nav {
     background-color: var(--color-quinto);
-    padding: 10px 0;
-	margin: 0px 20px;
+   padding: auto;
+	margin: auto;
     text-align: center;
     font-weight: bold;
     border-top-left-radius: 20px;
@@ -39,9 +39,14 @@ nav a {
 }
 
 nav a:hover{
-    font-style: inherit;
-    font: unset;
-    font-size: 150%;
+	color: var(--color-uno);
+	height: 2px;
+	width: 0;
+	left: 50%;
+	
+	transform: translateX(-50%);
+	
+	transition: 0.8s ease-in-out;
 }
 
 .contenedor{
@@ -323,3 +328,43 @@ footer a{
 	margin: 20px 20px;
 	text-decoration: none;
 }
+
+footer a:hover{
+	color: var(--color-uno);
+	height: 2px;
+	width: 0;
+	left: 50%;
+	
+	transform: translateX(-50%);
+	
+	transition: 0.8s ease-in-out;
+}
+
+/* Estilo Terminos y condiciones y Preguntas frecuentes */
+
+
+.TeryCon body {
+	font-family: Arial, sans-serif;
+	line-height: 1.6;
+	margin: 0;
+	padding: 20px;
+}
+.TeryCon h1 {
+	color: #333;
+	font-size: 35px;
+	text-align: center;
+	text-decoration: underline  black;
+}
+
+.TeryCon p {
+
+	text-decoration: none;
+	color: #666;
+} 
+
+.TeryCon a {
+
+	text-decoration: underline black;
+	color: var(--color-uno);
+	
+} 
