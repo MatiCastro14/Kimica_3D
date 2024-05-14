@@ -4,7 +4,7 @@
     --color-dos: #04fce4;
     --color-tres: #5cfcec;
     --color-cuatro: #029687;
-    --color-quinto: #67a8ddd2;
+    --color-quinto: #0f4d80d2;
     --color-sexto: #f0e4e4;
 }
 
@@ -23,8 +23,8 @@ body{
 /* BARRA NAVEGACION */
 nav {
     background-color: var(--color-quinto);
-   padding: auto;
-	margin: auto;
+    padding: 15px 10px;
+	margin: auto 20px;
     text-align: center;
     font-weight: bold;
     border-top-left-radius: 20px;
