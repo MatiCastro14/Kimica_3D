@@ -15,6 +15,34 @@
     box-sizing: border-box;
 }
 
+header {
+    display: flex;
+    justify-content: space-between; /* Espacio entre el logo y el texto */
+    align-items: center;
+    padding: 0 20px; /* Ajusta según sea necesario */
+    min-height: 70px;
+    position: relative;
+    margin-left: 200px;
+}
+
+.logo {
+   
+flex:1;
+    display: flex;
+    justify-content: center; /* Centra el logo horizontalmente */
+    align-items: center;
+}
+
+header h1 {
+margin:0 ;   
+ text-align: right;
+ font-size: 35px;
+ 
+}
+
+
+
+
 body{
     background-color: var(--color-sexto);
     margin: 0; /* Elimina el margen en el cuerpo */
