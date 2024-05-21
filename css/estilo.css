@@ -305,3 +305,125 @@ main {
 		width: 100%;
 	}
 }
+
+
+/* Media Queries para dispositivos */
+/*Tablets*/
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    h2 {
+        font-size: 3vw;
+    }
+
+    .saludo {
+        font-size: 1.5em;
+    }
+
+    nav a {
+        font-size: 1.2em;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+
+    .imagen_contenedor {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px; /* Espacio items */
+    }
+
+    .imagen-item {
+        flex: 1 1 calc(50% - 20px);/* ancho items */
+        box-sizing: border-box; 
+        display: flex;
+        flex-direction: column; /* Alinea los hijos verticalmente */
+        align-items: center; 
+        text-align: center;
+    }
+
+	.imagen-item img {
+        max-width: 300px;
+        width: 100%;
+        height: auto; /* imágenes la proporción */
+        object-fit: cover; /* Mantiene la proporción de la imagen y recorta si es necesario */
+        display: block; /* Elimina el espacio blanco debajo de la imagen */
+    }
+
+    footer {
+		background-color: #d3d3d3;
+        flex-direction: column;
+		display: flex;
+        align-items: center;
+    	text-align: center;
+    }
+
+    .logoKmc img {
+        max-width: 150px; /* Ajusta el ancho máximo para tablets */
+    }
+}
+
+
+
+/* CELULARES */
+@media screen and (max-width: 767px) {
+    .logoKmc img {
+        max-width: 100px; /* Ajusta el ancho máximo para celulares */
+    }
+
+
+	header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+	.saludo {
+        font-size: 1.2em;
+    }
+
+    nav {
+        flex-direction: column;
+    }
+
+    nav a {
+        font-size: 1em;
+        padding: 5px 0;
+    }
+
+    h2 {
+        font-size: 1.2em;
+    }
+
+    .imagen-item {
+        flex: 1 1 100%;
+    }
+
+	.imagen-item img {
+        width: 100%;
+        height: auto; /* imágenes la proporción */
+    }
+
+    footer {
+        background-color: #d3d3d3;
+		display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    footer a {
+        padding: 2px 0;
+    }
+
+    .videos {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .video iframe {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16/9; /* Mantiene la proporción del video */
+    }
+    
+}
