@@ -403,9 +403,14 @@ footer a:hover{
     h2 {
         font-size: 3vw;
     }
+    header {
+        margin-left: 0;
+        padding: 10px 20px;
+    }
 
-    .saludo {
-        font-size: 1.5em;
+    header div h1 {
+        padding: 20px;
+        font-size: 28px;
     }
 
     nav a {
@@ -455,16 +460,24 @@ footer a:hover{
 
 
 /* CELULARES */
-@media screen and (max-width: 767px) {
-    .logoKmc img {
-        max-width: 100px; /* Ajusta el ancho máximo para celulares */
-    }
-
-
-	header {
+@media screen and (max-width: 600px) {
+    header {
         flex-direction: column;
-        text-align: center;
+        align-items: center;
+        margin-left: 0;
+        padding: 10px;
     }
+
+    .logo {
+        justify-content: center;
+    }
+
+    header div h1 {
+        padding: 10px;
+        text-align: center;
+        font-size: 24px;
+    }
+}
 
 	.saludo {
         font-size: 1.2em;
@@ -515,5 +528,3 @@ footer a:hover{
         height: auto;
         aspect-ratio: 16/9; /* Mantiene la proporción del video */
     }
-    
-}
