@@ -133,13 +133,14 @@ p {
 	display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-	margin-top: 20px;
+	margin-top: 30px;
 }
 
 .imagen-item {
     width: calc(25% - 20px); /* contenedor menos margen */
     margin-bottom: 20px;
     text-align: center;
+	margin: 0px 20px;
 }
 
 .imagen-item img {
