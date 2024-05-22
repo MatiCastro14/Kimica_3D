@@ -403,6 +403,9 @@ footer a:hover{
     h2 {
         font-size: 3vw;
     }
+    header h1{
+font-size: 29px;
+    }
 
     .saludo {
         font-size: 1.5em;
@@ -460,12 +463,21 @@ footer a:hover{
         max-width: 100px; /* Ajusta el ancho máximo para celulares */
     }
 
-
-	header {
+    header {
         flex-direction: column;
-        text-align: center;
+        align-items: center;
+        margin-left: 0;
+        padding: 10px;
+    }
+    .logo {
+        justify-content: center;
     }
 
+    header div h1 {
+        padding: 10px;
+        text-align: center;
+        font-size: 24px;
+    }
 	.saludo {
         font-size: 1.2em;
     }
