@@ -73,15 +73,36 @@ class Contacto:
         self.cursor.execute(sql, valores)        
         self.conn.commit()
         return self.cursor.lastrowid
-    
+   
 
-     #----------------------------------------------------------------
+    #----------------------------------------------------------------
+    def modificar_producto(self, id, nuevo_nombre, nuevo_correo, nuevo_telefono, nueva_preferencia, nuevo_comentario,nueva_imagen):
+        sql = "UPDATE consultas SET nombre = %s, correo = %s, telefono = %s, preferencia = %s, comentario = %s, imagen_url=%s WHERE id = %s"
+        valores = (nuevo_nombre, nuevo_correo, nuevo_telefono, nueva_preferencia, nuevo_comentario,nueva_imagen, id)
+        self.cursor.execute(sql, valores)
+        self.conn.commit()
+        return self.cursor.rowcount > 0
+
+    #----------------------------------------------------------------
+
+    def consultar_contacto(self, id):
+        # Consultamos un producto a partir de su código
+        self.cursor.execute(f"SELECT * FROM consultas WHERE codigo = {id}")
+        return self.cursor.fetchone()
+
+#----------------------------------------------------------------
     def listar_consultas(self):
         self.cursor.execute("SELECT * FROM consultas")
         consultas = self.cursor.fetchall()
         return consultas
+ #----------------------------------------------------------------
+    def eliminar_consulta(self, id):
+        # Eliminamos un producto de la tabla a partir de su código
+        self.cursor.execute(f"DELETE FROM consultas WHERE id = {id}")
+        self.conn.commit()
+        return self.cursor.rowcount > 0
 
-
+    #----------------------------------------------------------------
 #--------------------------------------------------------------------
 # Cuerpo del programa
 #--------------------------------------------------------------------
@@ -103,7 +124,7 @@ RUTA_DESTINO = '/home/mcastro/mysite/static/imagenes'
 #La ruta Flask /consultas con el método HTTP GET está diseñada para proporcionar los detalles de todos los consultas almacenados en la base de datos.
 #El método devuelve una lista con todos los consultas en formato JSON.
 
-@app.route("/contacto", methods=["GET"])
+@app.route("/consultas", methods=["GET"])
 def listar_consultas():
     consultas = contacto.listar_consultas()
     return jsonify(consultas)
@@ -142,6 +163,91 @@ def agregar_consulta():
         #Si el consulta no se puede agregar, se devuelve una respuesta JSON con un mensaje de error y un código de estado HTTP 500 (Internal Server Error).
         return jsonify({"mensaje": "Error al agregar el consulta."}), 500
     
+
+#--------------------------------------------------------------------
+# Modificar un producto según su código
+#--------------------------------------------------------------------
+@app.route("/consultas/<int:id>", methods=["PUT"])
+#La ruta Flask /productos/<int:codigo> con el método HTTP PUT está diseñada para actualizar la información de un producto existente en la base de datos, identificado por su código.
+#La función modificar_producto se asocia con esta URL y es invocada cuando se realiza una solicitud PUT a /productos/ seguido de un número (el código del producto).
+def modificar_producto(id):
+    #Se recuperan los nuevos datos del formulario
+    nuevo_nombre = request.form.get("nombre")
+    nuevo_correo = request.form.get("correo")
+    nuevo_telefono= request.form.get("telefono")
+    nueva_preferencia=request.form.get("preferencia")
+    nuevo_comentario=request.form.get("comentario")
+
+    
+    
+    # Verifica si se proporcionó una nueva imagen
+    if 'imagen' in request.files:
+        imagen = request.files['imagen']
+        # Procesamiento de la imagen
+        nombre_imagen = secure_filename(imagen.filename) #Chequea el nombre del archivo de la imagen, asegurándose de que sea seguro para guardar en el sistema de archivos
+        nombre_base, extension = os.path.splitext(nombre_imagen) #Separa el nombre del archivo de su extensión.
+        nombre_imagen = f"{nombre_base}_{int(time.time())}{extension}" #Genera un nuevo nombre para la imagen usando un timestamp, para evitar sobreescrituras y conflictos de nombres.
+
+        # Guardar la imagen en el servidor
+        imagen.save(os.path.join(RUTA_DESTINO, nombre_imagen))
+        
+        # Busco el producto guardado
+        consultas = contacto.consultar_contacto(id)
+        if consultas: # Si existe el producto...
+            imagen_vieja = contacto["imagen_url"]
+            # Armo la ruta a la imagen
+            ruta_imagen = os.path.join(RUTA_DESTINO, imagen_vieja)
+
+            # Y si existe la borro.
+            if os.path.exists(ruta_imagen):
+                os.remove(ruta_imagen)
+    
+    else:
+        # Si no se proporciona una nueva imagen, simplemente usa la imagen existente del producto
+        consultas = contacto.consultar_contacto(id)
+        if contacto:
+            nombre_imagen = consultas["imagen_url"]
+
+
+    # Se llama al método modificar_producto pasando el codigo del producto y los nuevos datos.
+    if contacto.modificar_producto(id, nuevo_nombre, nuevo_correo, nuevo_telefono, nueva_preferencia, nuevo_comentario, nombre_imagen):
+        
+        #Si la actualización es exitosa, se devuelve una respuesta JSON con un mensaje de éxito y un código de estado HTTP 200 (OK).
+        return jsonify({"mensaje": "Consulta modificado"}), 200
+    else:
+        #Si el producto no se encuentra (por ejemplo, si no hay ningún producto con el código dado), se devuelve un mensaje de error con un código de estado HTTP 404 (No Encontrado).
+        return jsonify({"mensaje": "Consulta no encontrado"}), 403
+
+
+
+#--------------------------------------------------------------------
+# Eliminar un producto según su código
+#--------------------------------------------------------------------
+@app.route("/consultas/<int:codigo>", methods=["DELETE"])
+#La ruta Flask /productos/<int:codigo> con el método HTTP DELETE está diseñada para eliminar un producto específico de la base de datos, utilizando su código como identificador.
+#La función eliminar_producto se asocia con esta URL y es llamada cuando se realiza una solicitud DELETE a /productos/ seguido de un número (el código del producto).
+def eliminar_producto(codigo):
+    # Busco el producto en la base de datos
+    consulta = contacto.consultar_contacto(codigo)
+    if consulta: # Si el producto existe, verifica si hay una imagen asociada en el servidor.
+        imagen_vieja = consulta["imagen_url"]
+        # Armo la ruta a la imagen
+        ruta_imagen = os.path.join(RUTA_DESTINO, imagen_vieja)
+
+        # Y si existe, la elimina del sistema de archivos.
+        if os.path.exists(ruta_imagen):
+            os.remove(ruta_imagen)
+
+        # Luego, elimina el producto del catálogo
+        if contacto.eliminar_consulta(id):
+            #Si el producto se elimina correctamente, se devuelve una respuesta JSON con un mensaje de éxito y un código de estado HTTP 200 (OK).
+            return jsonify({"mensaje": "Producto eliminado"}), 200
+        else:
+            #Si ocurre un error durante la eliminación (por ejemplo, si el producto no se puede eliminar de la base de datos por alguna razón), se devuelve un mensaje de error con un código de estado HTTP 500 (Error Interno del Servidor).
+            return jsonify({"mensaje": "Error al eliminar el producto"}), 500
+    else:
+        #Si el producto no se encuentra (por ejemplo, si no existe un producto con el codigo proporcionado), se devuelve un mensaje de error con un código de estado HTTP 404 (No Encontrado). 
+        return jsonify({"mensaje": "Producto no encontrado"}), 404
 
 
     #--------------------------------------------------------------------
