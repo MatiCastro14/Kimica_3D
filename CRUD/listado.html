@@ -1,11 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- CSS EXTERNO -->
+  <link rel="stylesheet" href="../css/estilo.css">
+  <!-- FAVICON -->
+  <link rel="icon" href="../img/logo-kimica.png">
 </head>
+
 <body>
-    
+  <header>
+    <!-- logo redirige a la pagina principal -->
+    <div class="logo">
+      <a href="./index.html">
+        <img src="./img/logo-kimica.png" alt="logo-kmc" width="150" height="150">
+      </a>
+      <h1>Hola Maker👋</h1>
+    </div>
+  </header>
+
+  <nav>
+    <!-- HIPERVINCULOS DEL MENU -->
+    <a href="./index.html">Inicio</a>
+    <a href="./extensiones/impresora-fdm.html">Impresoras de Filamento</a>
+    <a href="./extensiones/impresora-resina.html">Impresoras de Resina</a>
+    <a href="./extensiones/insumos.html">Insumos</a>
+    <a href="./extensiones/trabajos.html">Trabajos</a>
+    <a href="./extensiones/contacto.html">Contacto</a>
+  </nav>
+
+  <main>
+    <h2>Titulo</h2>
+    <table class="tabla" id="tabla">
+      <thead>
+        <tr>
+          <th>Usuario</th>
+          <th>Email</th>
+          <th>Telefono</th>
+          <th>Motivo de contacto</th>
+          <th>Preferencia</th>
+          <th>Comentario</th>
+          <th>Foto</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="Usuario">Hola</td>
+          <td data-label="Email">hola@hola.com</td>
+          <td data-label="Telefono">123456789</td>
+          <td data-label="Motivo de contacto">Comprar</td>
+          <td data-label="Preferencia">Impresora</td>
+          <td data-label="Comentario">Me gustaria comprar una impresora</td>
+          <td data-label="Foto"><img src="./img/logo-kimica.png" alt="logo-kmc"></td>
+        </tr>
+        <tr>
+          <td data-label="Usuario">Juan</td>
+          <td data-label="Email">juan@hola.com</td>
+          <td data-label="Telefono">987654321</td>
+          <td data-label="Motivo de contacto">Consultar</td>
+          <td data-label="Preferencia">Filamento</td>
+          <td data-label="Comentario">Me gustaria consultar sobre filamentos</td>
+          <td data-label="Foto"><img src="./img/logo-kimica.png" alt="logo-kmc"></td>
+        </tr>
+      </tbody>
+    </table>
+  </main>
+
+  <footer>
+    <a href="./extensiones/TyC.html">Términos y Condiciones</a>
+    <a href="./extensiones/pregFrec.html">Preguntas Frecuentes</a>
+
+    <div class="redes">
+      <a href="https://web.facebook.com/kimica.3d" target="_blank">
+        <i class="fa-brands fa-facebook"></i></a>
+      <a href="https://www.instagram.com/kimica_3d/" target="_blank">
+        <i class="fa-brands fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@kimica_3d" target="_blank">
+        <i class="fa-brands fa-tiktok"></i></a>
+      <a href="https://walink.co/6101ef" target="_blank">
+        <i class="fa-brands fa-whatsapp"></i></a>
+
+      <a href="listado.html" target="_blank">
+
+        <i class="fa-light fa-user-tie"></i>
+      </a>
+
+
+    </div>
+  </footer>
 </body>
+
 </html>
