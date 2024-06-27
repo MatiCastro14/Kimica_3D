@@ -75,6 +75,12 @@ class Contacto:
         return self.cursor.lastrowid
     
 
+     #----------------------------------------------------------------
+def listar_productos(self):
+        self.cursor.execute("SELECT * FROM consultas")
+        consultas = self.cursor.fetchall()
+        return consultas
+
 
 #--------------------------------------------------------------------
 # Cuerpo del programa
@@ -96,10 +102,11 @@ RUTA_DESTINO = '/home/mcastro/mysite/static/imagenes'
 #--------------------------------------------------------------------
 #La ruta Flask /consultas con el método HTTP GET está diseñada para proporcionar los detalles de todos los consultas almacenados en la base de datos.
 #El método devuelve una lista con todos los consultas en formato JSON.
-#@app.route("/contacto", methods=["GET"])
-#def listar_consultas():
-    #consultas = contacto.listar_consultas()
-   # return jsonify(consultas)
+
+@app.route("/contacto", methods=["GET"])
+def listar_consultas():
+    consultas = contacto.listar_consultas()
+    return jsonify(consultas)
 
 
     #--------------------------------------------------------------------
