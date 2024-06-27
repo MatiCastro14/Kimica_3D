@@ -76,7 +76,7 @@ class Contacto:
     
 
      #----------------------------------------------------------------
-def listar_productos(self):
+    def listar_consultas(self):
         self.cursor.execute("SELECT * FROM consultas")
         consultas = self.cursor.fetchall()
         return consultas
