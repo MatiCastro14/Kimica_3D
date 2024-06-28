@@ -20,7 +20,7 @@
     <!-- logo redirige a la pagina principal -->
     <div class="logo">
       <a href="./index.html">
-        <img src="./img/logo-kimica.png" alt="logo-kmc" width="150" height="150">
+        <img src="../img/logo-kimica.png" alt="logo-kmc" width="150" height="150">
       </a>
       <h1>Hola Maker👋</h1>
     </div>
@@ -38,7 +38,7 @@
 
   <main>
     <h2>Titulo</h2>
-    <table class="tabla" id="tablaconsulta">
+    <table class="tabla" id="tabla">
       <thead>
         <tr>
           <th>id</th>
@@ -81,6 +81,7 @@
 
 
   <script>
+    const URL = "https://mcastro.pythonanywhere.com/"
     
 // Realizamos la solicitud GET al servidor para obtener todos los productos.
 fetch(URL + 'consultas')
