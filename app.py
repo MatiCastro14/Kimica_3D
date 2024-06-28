@@ -93,8 +93,8 @@ class Contacto:
 #----------------------------------------------------------------
     def listar_consultas(self):
         self.cursor.execute("SELECT * FROM consultas")
-        consultas = self.cursor.fetchall()
-        return consultas
+        consulta = self.cursor.fetchall()
+        return consulta
  #----------------------------------------------------------------
     def eliminar_consulta(self, id):
         # Eliminamos un producto de la tabla a partir de su código
@@ -128,6 +128,7 @@ RUTA_DESTINO = '/home/mcastro/mysite/static/imagenes'
 def listar_consultas():
     consulta = contacto.listar_consultas()
     return jsonify(consulta)
+
 
 
     #--------------------------------------------------------------------
