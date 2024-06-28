@@ -159,6 +159,7 @@ fetch(URL + 'consultas')
 				'<td align="right">' + consulta.correo + '</td>' +
 				'<td align="right">' + consulta.telefono + '</td>' +
 				'<td>' + consulta.preferencia + '</td>' +
+				'<td>' + consulta.motivo + '</td>' +
 				'<td>' + consulta.comentario + '</td>' +
 
 				// Mostrar miniatura de la imagen
