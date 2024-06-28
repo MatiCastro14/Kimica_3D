@@ -126,8 +126,8 @@ RUTA_DESTINO = '/home/mcastro/mysite/static/imagenes'
 
 @app.route("/consultas", methods=["GET"])
 def listar_consultas():
-    consultas = contacto.listar_consultas()
-    return jsonify(consultas)
+    consulta = contacto.listar_consultas()
+    return jsonify(consulta)
 
 
     #--------------------------------------------------------------------
