@@ -19,7 +19,7 @@
   <header>
     <!-- logo redirige a la pagina principal -->
     <div class="logo">
-      <a href="./index.html">
+      <a href="../index.html">
         <img src="../img/logo-kimica.png" alt="logo-kmc" width="150" height="150">
       </a>
       <h1>Hola Maker👋</h1>
@@ -104,8 +104,8 @@ fetch(URL + 'consultas')
 			let fila = document.createElement('tr'); //Crea una nueva fila de tabla (<tr>) para cada producto.
 			fila.innerHTML = '<td>' + consulta.id + '</td>' +
 				'<td>' + consulta.nombre + '</td>' +
-				'<td align="right">' + consulta.correo_electronico + '</td>' +
-				'<td align="right">' + consulta.telefono + '</td>' +
+				'<td >' + consulta.correo_electronico + '</td>' +
+				'<td >' + consulta.telefono + '</td>' +
 				'<td>' + consulta.preferencia + '</td>' +
 				'<td>' + consulta.motivo + '</td>' +
 				'<td>' + consulta.comentario + '</td>' +
@@ -114,7 +114,7 @@ fetch(URL + 'consultas')
 				//'<td><img src=./static/imagenes/' + producto.imagen_url +' alt="Imagen del producto" style="width: 100px;"></td>' + '<td align="right">' + producto.proveedor + '</td>';
 				
 				//Al subir al servidor, deberá utilizarse la siguiente ruta. USUARIO debe ser reemplazado por el nombre de usuario de Pythonanywhere
-				'<td><img src=https://www.pythonanywhere.com/user/mcastro/files/home/mcastro/mysite/static/imagenes/' + consulta.imagen_url +' alt="Imagen del producto" style="width: 100px;"></td>' + '<td align="right">' + producto.proveedor + '</td>';
+				'<td><img src=https://www.pythonanywhere.com/user/mcastro/files/home/mcastro/mysite/static/imagenes/' + consulta.imagen_url +' alt="Imagen del producto" style="width: 100px;"></td>' + '<td align="right">' + '</td>';
 			
 			//Una vez que se crea la fila con el contenido del producto, se agrega a la tabla utilizando el método appendChild del elemento tablaProductos.
 			tablaConsulta.appendChild(fila);
