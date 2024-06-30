@@ -76,12 +76,13 @@ class Contacto:
    
 
     #----------------------------------------------------------------
-    def modificar_consulta(self, id, nuevo_nombre, nuevo_correo, nuevo_telefono, nueva_preferencia, nuevo_comentario,nueva_imagen):
-        sql = "UPDATE consultas SET nombre = %s, correo = %s, telefono = %s, preferencia = %s, comentario = %s, imagen_url=%s WHERE id = %s"
-        valores = (nuevo_nombre, nuevo_correo, nuevo_telefono, nueva_preferencia, nuevo_comentario,nueva_imagen, id)
+    def modificar_consulta(self, id, nombre, correo, telefono, imagen, motivo, preferencia, comentario):
+        sql = "UPDATE consultas SET nombre = %s, correo_electronico = %s, telefono = %s, imagen_url = %s, motivo = %s, preferencia = %s, comentario = %s WHERE id = %s"
+        valores = (nombre, correo, telefono, imagen, motivo, preferencia, comentario, id)
         self.cursor.execute(sql, valores)
         self.conn.commit()
         return self.cursor.rowcount > 0
+
 
     #----------------------------------------------------------------
 
@@ -202,56 +203,43 @@ def agregar_consulta():
 # Modificar un consulta según su código
 #--------------------------------------------------------------------
 @app.route("/consultas/<int:id>", methods=["PUT"])
-#La ruta Flask /consultas/<int:codigo> con el método HTTP PUT está diseñada para actualizar la información de un consulta existente en la base de datos, identificado por su código.
-#La función modificar_consulta se asocia con esta URL y es invocada cuando se realiza una solicitud PUT a /consultas/ seguido de un número (el código del consulta).
 def modificar_consulta(id):
-    #Se recuperan los nuevos datos del formulario
-    nuevo_nombre = request.form.get("nombre")
-    nuevo_correo = request.form.get("correo")
-    nuevo_telefono= request.form.get("telefono")
-    nueva_preferencia=request.form.get("preferencia")
-    nuevo_comentario=request.form.get("comentario")
 
-    
-    
-    # Verifica si se proporcionó una nueva imagen
+    # Recuperar los nuevos datos del formulario
+    nombre = request.form.get("nombre")
+    correo = request.form.get("correo")
+    telefono = request.form.get("telefono")
+    motivo = request.form.get("motivo")
+    preferencia = request.form.get("preferencia")
+    comentario = request.form.get("comentario")
+
+    # Verificar si se proporciona una nueva imagen
     if 'imagen' in request.files:
         imagen = request.files['imagen']
-        # Procesamiento de la imagen
-        nombre_imagen = secure_filename(imagen.filename) #Chequea el nombre del archivo de la imagen, asegurándose de que sea seguro para guardar en el sistema de archivos
-        nombre_base, extension = os.path.splitext(nombre_imagen) #Separa el nombre del archivo de su extensión.
-        nombre_imagen = f"{nombre_base}_{int(time.time())}{extension}" #Genera un nuevo nombre para la imagen usando un timestamp, para evitar sobreescrituras y conflictos de nombres.
-
-        # Guardar la imagen en el servidor
+        # Procesar la imagen
+        nombre_imagen = secure_filename(imagen.filename)
+        nombre_base, extension = os.path.splitext(nombre_imagen)
+        nombre_imagen = f"{nombre_base}_{int(time.time())}{extension}"
         imagen.save(os.path.join(RUTA_DESTINO, nombre_imagen))
-        
-        # Busco el consulta guardado
-        consultas = contacto.consultar_contacto(id)
-        if consultas: # Si existe el consulta...
-            imagen_vieja = contacto["imagen_url"]
-            # Armo la ruta a la imagen
-            ruta_imagen = os.path.join(RUTA_DESTINO, imagen_vieja)
-
-            # Y si existe la borro.
-            if os.path.exists(ruta_imagen):
-                os.remove(ruta_imagen)
-    
     else:
-        # Si no se proporciona una nueva imagen, simplemente usa la imagen existente del consulta
-        consultas = contacto.consultar_contacto(id)
-        if contacto:
-            nombre_imagen = consultas["imagen_url"]
+        # Si no se proporciona una nueva imagen, mantener la imagen existente
+        consulta = contacto.consultar_contacto(id)
+        if consulta:
+            nombre_imagen = consulta["imagen_url"]
 
-
-    # Se llama al método modificar_consulta pasando el codigo del consulta y los nuevos datos.
-    if contacto.modificar_consulta(id, nuevo_nombre, nuevo_correo, nuevo_telefono, nueva_preferencia, nuevo_comentario, nombre_imagen):
-        
-        #Si la actualización es exitosa, se devuelve una respuesta JSON con un mensaje de éxito y un código de estado HTTP 200 (OK).
-        return jsonify({"mensaje": "Consulta modificado"}), 200
+    # Llamar al método modificar_consulta pasando el id y los nuevos datos
+    if contacto.modificar_consulta(id, nombre, correo, telefono, nombre_imagen, motivo, preferencia, comentario):
+        return jsonify({"mensaje": "Consulta modificada correctamente."}), 200
     else:
-        #Si el consulta no se encuentra (por ejemplo, si no hay ningún consulta con el código dado), se devuelve un mensaje de error con un código de estado HTTP 404 (No Encontrado).
-        return jsonify({"mensaje": "Consulta no encontrado"}), 403
+        return jsonify({"mensaje": "Error al modificar la consulta."}), 500
 
+@app.route("/consultas/<int:id>", methods=["GET"])
+def mostrar_consulta(id):
+    consulta = contacto.consultar_contacto(id)
+    if consulta:
+        return jsonify(consulta), 201
+    else:
+        return "Consulta no encontrada.", 404
 
 
 #--------------------------------------------------------------------

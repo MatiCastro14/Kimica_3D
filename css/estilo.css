@@ -367,6 +367,205 @@ footer a:hover{
 	transition: 0.8s ease-in-out;
 }
 
+/*estilo para modificar.html*/
+/* Estilo para el formulario */
+#form-obtener-consulta {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para las etiquetas del formulario */
+#form-obtener-consulta label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Estilo para los campos de entrada */
+#form-obtener-consulta input[type="number"] {
+    width: calc(100% - 22px); /* Adjust width to account for padding and border */
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+/* Estilo para el botón de envío */
+#form-obtener-consulta button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #009879;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 16px;
+}
+
+/* Efecto hover para el botón de envío */
+#form-obtener-consulta button[type="submit"]:hover {
+    background-color: #007f67;
+}
+
+/* Estilo para el enlace */
+#form-obtener-consulta a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    margin-left: 10px;
+    font-size: 16px;
+}
+
+/* Efecto hover para el enlace */
+#form-obtener-consulta a:hover {
+    background-color: #0056b3;
+}
+
+
+
+
+/* Estilo general para el contenedor */
+#datos-consulta {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+}
+
+/* Estilo para los encabezados */
+#datos-consulta h2 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 24px;
+    text-align: center;
+}
+
+/* Estilo para las etiquetas de los campos del formulario */
+#datos-consulta label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+}
+
+/* Estilo para los campos del formulario */
+#datos-consulta input[type="text"],
+#datos-consulta input[type="email"],
+#datos-consulta input[type="number"],
+#datos-consulta input[type="file"],
+#datos-consulta textarea {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+/* Estilo para los botones */
+#datos-consulta button,
+#datos-consulta a {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-right: 10px;
+    background-color: #009879;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#datos-consulta button:hover,
+#datos-consulta a:hover {
+    background-color: #007f67;
+}
+
+/* Estilo para las imágenes */
+#datos-consulta img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+    border-radius: 4px;
+}
+
+/* Estilo general para el contenedor */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para el título principal */
+.container h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 28px;
+}
+
+/* Estilo para la tabla */
+.container table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Estilo para las celdas de la tabla */
+.container table td {
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Estilo para los enlaces dentro de las celdas de la tabla */
+.container table td a {
+    display: block;
+    padding: 10px 20px;
+    background-color: #009879;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.container table td a:hover {
+    background-color: #007f67;
+}
+
+/* Ajustes para dispositivos móviles */
+@media screen and (max-width: 600px) {
+    .container {
+        padding: 15px;
+    }
+
+    .container h1 {
+        font-size: 24px;
+    }
+
+    .container table td {
+        padding: 10px;
+    }
+
+    .container table td a {
+        padding: 8px 16px;
+    }
+}
 /* Estilo Terminos y condiciones y Preguntas frecuentes */
 
 
