@@ -97,7 +97,7 @@
                 })
                 // Asigna los datos de los consultas obtenidos a la propiedad consultas del estado.
                 .then(data => {
-                    const consultaTable = document.getElementById('tablaconsulta').getElementsByTagName('tablaconsulta')[0];
+                    const consultaTable = document.getElementById('tabla').getElementsByTagName('tbody')[0];
                     consultaTable.innerHTML = ''; // Limpia la tabla antes de insertar nuevos datos
                     data.forEach(consulta => {
                         const row = consultaTable.insertRow();
