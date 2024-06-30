@@ -87,7 +87,7 @@ class Contacto:
 
     def consultar_contacto(self, id):
         # Consultamos un consulta a partir de su código
-        self.cursor.execute(f"SELECT * FROM consultas WHERE codigo = {id}")
+        self.cursor.execute(f"SELECT * FROM consultas WHERE id = {id}")
         return self.cursor.fetchone()
 #------------------------------------------------------------------------------
     def mostrar_consulta(self, id):
