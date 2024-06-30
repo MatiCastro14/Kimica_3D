@@ -76,7 +76,7 @@ class Contacto:
    
 
     #----------------------------------------------------------------
-    def modificar_producto(self, id, nuevo_nombre, nuevo_correo, nuevo_telefono, nueva_preferencia, nuevo_comentario,nueva_imagen):
+    def modificar_consulta(self, id, nuevo_nombre, nuevo_correo, nuevo_telefono, nueva_preferencia, nuevo_comentario,nueva_imagen):
         sql = "UPDATE consultas SET nombre = %s, correo = %s, telefono = %s, preferencia = %s, comentario = %s, imagen_url=%s WHERE id = %s"
         valores = (nuevo_nombre, nuevo_correo, nuevo_telefono, nueva_preferencia, nuevo_comentario,nueva_imagen, id)
         self.cursor.execute(sql, valores)
@@ -86,9 +86,27 @@ class Contacto:
     #----------------------------------------------------------------
 
     def consultar_contacto(self, id):
-        # Consultamos un producto a partir de su código
+        # Consultamos un consulta a partir de su código
         self.cursor.execute(f"SELECT * FROM consultas WHERE codigo = {id}")
         return self.cursor.fetchone()
+#------------------------------------------------------------------------------
+    def mostrar_consulta(self, id):
+        # Mostramos los datos de un consulta a partir de su código
+        consulta = self.consultar_contacto(id)
+        if consulta:
+            print("-" * 40)
+            print(f"id.....: {consulta['id']}")
+            print(f"nombre: {consulta['nombre']}")
+            print(f"correo_electronico...: {consulta['correo_electronico']}")
+            print(f"telefono.....: {consulta['telefono']}")
+            print(f"preferencia.....: {consulta['preferencia']}")
+            print(f"comentario..: {consulta['comentario']}")
+            print(f"motivo..: {consulta['motivo']}")
+            print(f"imagen_url..: {consulta['imagen_url']}")
+            print("-" * 40)
+        else:
+            print("consulta no encontrado.")
+
 
 #----------------------------------------------------------------
     def listar_consultas(self):
@@ -97,7 +115,7 @@ class Contacto:
         return consulta
  #----------------------------------------------------------------
     def eliminar_consulta(self, id):
-        # Eliminamos un producto de la tabla a partir de su código
+        # Eliminamos un consulta de la tabla a partir de su código
         self.cursor.execute(f"DELETE FROM consultas WHERE id = {id}")
         self.conn.commit()
         return self.cursor.rowcount > 0
@@ -128,6 +146,21 @@ RUTA_DESTINO = '/home/mcastro/mysite/static/imagenes'
 def listar_consultas():
     consulta = contacto.listar_consultas()
     return jsonify(consulta)
+
+
+
+
+
+#--------------------------------------------------------------------
+# Listar por su id
+#--------------------------------------------------------------------
+@app.route("/consultas/<int:id>", methods=["GET"])
+def mostrar_contacto(id):
+    consulta = contacto.consultar_contacto(id)
+    if consulta:
+        return jsonify(consulta), 201
+    else:
+        return "Consulta no encontrado", 404
 
 
 
@@ -166,12 +199,12 @@ def agregar_consulta():
     
 
 #--------------------------------------------------------------------
-# Modificar un producto según su código
+# Modificar un consulta según su código
 #--------------------------------------------------------------------
 @app.route("/consultas/<int:id>", methods=["PUT"])
-#La ruta Flask /productos/<int:codigo> con el método HTTP PUT está diseñada para actualizar la información de un producto existente en la base de datos, identificado por su código.
-#La función modificar_producto se asocia con esta URL y es invocada cuando se realiza una solicitud PUT a /productos/ seguido de un número (el código del producto).
-def modificar_producto(id):
+#La ruta Flask /consultas/<int:codigo> con el método HTTP PUT está diseñada para actualizar la información de un consulta existente en la base de datos, identificado por su código.
+#La función modificar_consulta se asocia con esta URL y es invocada cuando se realiza una solicitud PUT a /consultas/ seguido de un número (el código del consulta).
+def modificar_consulta(id):
     #Se recuperan los nuevos datos del formulario
     nuevo_nombre = request.form.get("nombre")
     nuevo_correo = request.form.get("correo")
@@ -192,9 +225,9 @@ def modificar_producto(id):
         # Guardar la imagen en el servidor
         imagen.save(os.path.join(RUTA_DESTINO, nombre_imagen))
         
-        # Busco el producto guardado
+        # Busco el consulta guardado
         consultas = contacto.consultar_contacto(id)
-        if consultas: # Si existe el producto...
+        if consultas: # Si existe el consulta...
             imagen_vieja = contacto["imagen_url"]
             # Armo la ruta a la imagen
             ruta_imagen = os.path.join(RUTA_DESTINO, imagen_vieja)
@@ -204,25 +237,25 @@ def modificar_producto(id):
                 os.remove(ruta_imagen)
     
     else:
-        # Si no se proporciona una nueva imagen, simplemente usa la imagen existente del producto
+        # Si no se proporciona una nueva imagen, simplemente usa la imagen existente del consulta
         consultas = contacto.consultar_contacto(id)
         if contacto:
             nombre_imagen = consultas["imagen_url"]
 
 
-    # Se llama al método modificar_producto pasando el codigo del producto y los nuevos datos.
-    if contacto.modificar_producto(id, nuevo_nombre, nuevo_correo, nuevo_telefono, nueva_preferencia, nuevo_comentario, nombre_imagen):
+    # Se llama al método modificar_consulta pasando el codigo del consulta y los nuevos datos.
+    if contacto.modificar_consulta(id, nuevo_nombre, nuevo_correo, nuevo_telefono, nueva_preferencia, nuevo_comentario, nombre_imagen):
         
         #Si la actualización es exitosa, se devuelve una respuesta JSON con un mensaje de éxito y un código de estado HTTP 200 (OK).
         return jsonify({"mensaje": "Consulta modificado"}), 200
     else:
-        #Si el producto no se encuentra (por ejemplo, si no hay ningún producto con el código dado), se devuelve un mensaje de error con un código de estado HTTP 404 (No Encontrado).
+        #Si el consulta no se encuentra (por ejemplo, si no hay ningún consulta con el código dado), se devuelve un mensaje de error con un código de estado HTTP 404 (No Encontrado).
         return jsonify({"mensaje": "Consulta no encontrado"}), 403
 
 
 
 #--------------------------------------------------------------------
-# Eliminar un producto según su código
+# Eliminar un consulta según su código
 #--------------------------------------------------------------------
 @app.route("/consultas/<int:id>", methods=["DELETE"])
 
@@ -242,13 +275,13 @@ def eliminar_consulta(id):
         if contacto.eliminar_consulta(id):
         
         
-            return jsonify({"mensaje": "Producto eliminado"}), 200
+            return jsonify({"mensaje": "consulta eliminado"}), 200
         else:
             
-            return jsonify({"mensaje": "Error al eliminar el producto"}), 500
+            return jsonify({"mensaje": "Error al eliminar el consulta"}), 500
     else:
         
-        return jsonify({"mensaje": "Producto no encontrado"}), 404
+        return jsonify({"mensaje": "consulta no encontrado"}), 404
 
 
     #--------------------------------------------------------------------
