@@ -224,11 +224,11 @@ def modificar_producto(id):
 #--------------------------------------------------------------------
 # Eliminar un producto según su código
 #--------------------------------------------------------------------
-@app.route("/consultas/<int:codigo>", methods=["DELETE"])
+@app.route("/consultas/<int:id>", methods=["DELETE"])
 
-def eliminar_producto(codigo):
+def eliminar_consulta(id):
 
-    consulta = contacto.consultar_contacto(codigo)
+    consulta = contacto.consultar_contacto(id)
     if consulta: # Si existe, verifica si hay una imagen asociada en el servidor.
         imagen_vieja = consulta["imagen_url"]
         # Armo la ruta a la imagen
