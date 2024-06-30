@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Listado</title>
+
+<!--FontAwasome-->
+<script src="https://kit.fontawesome.com/e55b798d0a.js" crossorigin="anonymous"></script>
+
+  <!-- CSS EXTERNO -->
+  <link rel="stylesheet" href="../css/estilo.css">
+  <!-- FAVICON -->
+  <link rel="icon" href="../img/favicon.ico">
+</head>
+
+<body>
+  <header>
+    <!-- logo redirige a la pagina principal -->
+    <div class="logo">
+      <a href="../index.html">
+        <img src="../img/logo-kimica.png" alt="logo-kmc" width="150" height="150">
+      </a>
+      <h1>Hola Maker👋</h1>
+    </div>
+  </header>
+
+  <nav>
+    <!-- HIPERVINCULOS DEL MENU -->
+    <a href="../index.html">Inicio</a>
+    <a href="../extensiones/impresora-fdm.html">Impresoras de Filamento</a>
+    <a href="../extensiones/impresora-resina.html">Impresoras de Resina</a>
+    <a href="../extensiones/insumos.html">Insumos</a>
+    <a href="../extensiones/trabajos.html">Trabajos</a>
+    <a href="../extensiones/contacto.html">Contacto</a>
+  </nav>
+
+  <main>
+    <h2>Titulo</h2>
+    <table class="tabla" id="tabla">
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>Nombre</th>
+          <th>Email</th>
+          <th>Telefono</th>
+          <th>Motivo de contacto</th>
+          <th>Preferencia</th>
+          <th>Foto</th>
+          <th>Comentario</th>
+        </tr>
+      </thead>
+      <tbody id="tablaconsulta">
+       </tbody>
+    </table>
+  </main>
+
+  <footer>
+    <a href="./extensiones/TyC.html">Términos y Condiciones</a>
+    <a href="./extensiones/pregFrec.html">Preguntas Frecuentes</a>
+
+    <div class="redes">
+      <a href="https://web.facebook.com/kimica.3d" target="_blank">
+        <i class="fa-brands fa-facebook"></i></a>
+      <a href="https://www.instagram.com/kimica_3d/" target="_blank">
+        <i class="fa-brands fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@kimica_3d" target="_blank">
+        <i class="fa-brands fa-tiktok"></i></a>
+      <a href="https://walink.co/6101ef" target="_blank">
+        <i class="fa-brands fa-whatsapp"></i></a>
+        <a href="back_office.html" target="_blank">
+
+          <i class="fa-solid fa-user-tie"></i>
+      </a>
+    
+
+
+    </div>
+  </footer>
+
+
+  <script>
+
+
+//const URL = "http://127.0.0.1:5000/"
+
+    const URL = "https://mcastro.pythonanywhere.com/"
+    
+// Realizamos la solicitud GET al servidor para obtener todos los productos.
+fetch(URL + 'consultas')
+	.then(function (response) {
+		if (response.ok) {
+			//Si la respuesta es exitosa (response.ok), convierte el cuerpo de la respuesta de formato JSON a un objeto JavaScript y pasa estos datos a la siguiente promesa then.
+			return response.json(); 
+	} else {
+			// Si hubo un error, lanzar explícitamente una excepción para ser "catcheada" más adelante
+			throw new Error('Error al obtener las consultas.');
+		}
+	})
+
+	//Esta función maneja los datos convertidos del JSON.
+	.then(function (data) {
+		let tablaConsulta = document.getElementById('tablaconsulta'); //Selecciona el elemento del DOM donde se mostrarán los productos.
+
+		// Iteramos sobre cada producto y agregamos filas a la tabla
+		for (let consulta of data) {
+			let fila = document.createElement('tr'); //Crea una nueva fila de tabla (<tr>) para cada producto.
+			fila.innerHTML = '<td>' + consulta.id + '</td>' +
+				'<td>' + consulta.nombre + '</td>' +
+				'<td >' + consulta.correo_electronico + '</td>' +
+				'<td >' + consulta.telefono + '</td>' +
+				'<td>' + consulta.preferencia + '</td>' +
+				'<td>' + consulta.motivo + '</td>' +
+			
+
+				// Mostrar miniatura de la imagen
+				//'<td><img src=../static/imagenes/' + consulta.imagen_url +' alt="Imagen del producto" style="width: 100px;"></td>' + '<td align="right">' + consulta.comentario + '</td>';
+				
+				//Al subir al servidor, deberá utilizarse la siguiente ruta. USUARIO debe ser reemplazado por el nombre de usuario de Pythonanywhere
+				'<td><img src=https://www.pythonanywhere.com/user/mcastro/files/home/mcastro/mysite/static/imagenes/' + consulta.imagen_url +' alt="Imagen del producto" style="width: 100px;"></td>' + '<td align="right">' +consulta.comentario + '</td>';
+			
+			//Una vez que se crea la fila con el contenido del producto, se agrega a la tabla utilizando el método appendChild del elemento tablaProductos.
+			tablaConsulta.appendChild(fila);
+		}
+	})
+
+	//Captura y maneja errores, mostrando una alerta en caso de error al obtener los productos.
+	.catch(function (error) {
+		// Código para manejar errores
+		alert('Error al obtener los productos.');
+	});
+  </script>
+</body>
+
+</html>
