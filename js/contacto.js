@@ -99,7 +99,16 @@ document.getElementById('formulario').addEventListener('submit', function (event
 		// En caso de error, mostramos una alerta con un mensaje de error.
 		.catch(function (error) {
 			alert('Error al agregar la consulta.');
-		});
+		})
+		
+                // Limpiar el formulario en ambos casos (éxito o error)
+                .finally(function () {
+                    document.getElementById('descripcion').value = "";
+                    document.getElementById('cantidad').value = "";
+                    document.getElementById('precio').value = "";
+                    document.getElementById('imagenProducto').value = "";
+                    document.getElementById('proveedorProducto').value = "";
+                });
 })
 
 
