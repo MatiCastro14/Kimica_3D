@@ -67,7 +67,16 @@
 
                 <!-- Motivo de consulta -->
                 <label for="motivoModificar">Motivo de Consulta:</label>
-                <input type="text" id="motivoModificar" required><br>
+              
+                <select id="motivoModificar" name="motivo" required>
+					<option value="">Seleccione una opcion</option>
+					<option value="Consulta">Consulta</option>
+					<option value="Solicitud de cotización">Solicitud de cotización</option>
+					<option value="Reclamo">Reclamo</option>
+					<!-- select permite seleccionsr entre las opcionrs creadas -->
+				</select>
+                <br>
+
 
                 <!-- Comentario: no deberia cambiarse en teoria   -->
                 <label for="comentarioModificar">Comentario:</label>

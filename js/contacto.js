@@ -103,11 +103,13 @@ document.getElementById('formulario').addEventListener('submit', function (event
 		
                 // Limpiar el formulario en ambos casos (éxito o error)
                 .finally(function () {
-                    document.getElementById('descripcion').value = "";
-                    document.getElementById('cantidad').value = "";
-                    document.getElementById('precio').value = "";
-                    document.getElementById('imagenProducto').value = "";
-                    document.getElementById('proveedorProducto').value = "";
+                    document.getElementById('nombre').value = "";
+                    document.getElementById('correo').value = "";
+                    document.getElementById('telefono').value = "";
+                    document.getElementById('motivo').value = "";
+                    document.getElementById('preferencia').value = "";
+					document.getElementById('comentario').value = "";
+					document.getElementById('foto').value = "";
                 });
 })
 
