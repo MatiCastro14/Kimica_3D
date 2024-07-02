@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kimica 3D</title>
+
+    
+<!--FontAwasome-->
+<script src="https://kit.fontawesome.com/e55b798d0a.js" crossorigin="anonymous"></script>
+
+
+    <!-- CSS EXTERNO -->
+    <link rel="stylesheet" href="../CSS/estilo.css">
+
+    <!-- FAVICON -->
+    <link rel="icon" href="../img/favicon.ico">
+</head>
+
+<body>
+    <!-- Encabezado -->
+    <header>
+        <!-- logo redirige a la pagina principal -->
+        <div class="logo">
+        
+            <a href="../index.html">
+                <img src="../img/logo-kimica.png" alt="logo-kmc" width="150" height="150">
+            </a>
+            <h1>Hola Maker👋</h1>
+        </div>
+        
+    </header>
+
+    <!-- Menú de navegación -->
+    <nav>
+        <!-- HIPERVINCULOS DEL MENU -->
+        <a href="../index.html">Inicio</a>
+        <a href="./impresora-fdm.html">Impresoras de Filamento</a>
+        <a href="./impresora-resina.html">Impresoras de Resina</a>
+        <a href="./insumos.html">Insumos</a>
+        <a href="./trabajos.html">Trabajos</a>
+        <a href="./contacto.html">Contacto</a>
+    </nav>
+
+    
+
+    <main>
+        <div class="container">
+            <form onsubmit="return validarFormulario()">
+                <h2>Iniciar Sesión</h2>
+                <div class="form-group">
+                    <label for="usuario">Usuario:</label>
+                    <input type="text" id="usuario" name="usuario">
+                </div>
+                <div class="form-group">
+                    <label for="contrasenia">Contraseña:</label>
+                    <input type="password" id="contrasenia" name="contrasenia">
+                </div>
+                <div class="form-group">
+                    <button type="submit">Iniciar Sesión</button>
+                </div>
+            </form>
+        </div>
+
+
+    </main>
+
+
+   <!-- Pie de página -->
+   <footer>
+    <a href="./TyC.html">Terminos y Condiciones</a>
+    <a href="./pregFrec.html">Preguntas Frecuentes</a>
+    <a href="./ingreso.html">Back Office</a>
+
+    <div class="redes">
+        <a href="https://web.facebook.com/kimica.3d" target="_blank">
+            <i class="fa-brands fa-facebook"></i></a>
+        <a href="https://www.instagram.com/kimica_3d/" target="_blank">
+            <i class="fa-brands fa-instagram"></i></a>
+        <a href="https://www.tiktok.com/@kimica_3d" target="_blank">
+            <i class="fa-brands fa-tiktok"></i></a>
+        <a href="https://walink.co/6101ef" target="_blank">
+      
+            <i class="fa-brands fa-whatsapp"></i></a>
+            
+    </div>
+</footer>
+<script>
+    function validarFormulario() {
+        var usuario = document.getElementById("usuario").value.trim();
+        var contrasenia = document.getElementById("contrasenia").value.trim();
+
+
+        if (usuario === "" || contrasenia === "") {
+            alert("Por favor, ingresa usuario y contraseña.");
+            return false; 
+        }
+
+        if (usuario !== "root" || contrasenia !== "root") {
+            alert("Usuario y Contrasenia INCORRECTOS");
+            return false; 
+            
+        }
+
+        
+        window.location.href = "back_office.html";
+        return false; 
+    }
+</script>
+
+
+<script>
+
+
+</script>
+</body>
+</html>
